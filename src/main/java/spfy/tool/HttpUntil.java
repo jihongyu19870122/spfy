@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.URI;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /*****
@@ -43,11 +44,23 @@ public class HttpUntil {
 
     private String result;
 
+    private String url;
+
     private StatusLine statusLine;
 
     private Header[] headers;
 
     private List<Cookie> cookies;
+
+    public LinkedHashMap<String, String> getTemp() {
+        return temp;
+    }
+
+    public void setTemp(LinkedHashMap<String, String> temp) {
+        this.temp = temp;
+    }
+
+    private LinkedHashMap<String,String> temp=new LinkedHashMap<>();
 
     private static final String USERAGENT = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1";
 
@@ -79,7 +92,7 @@ public class HttpUntil {
     }
 
     /*****
-     * 主要是shopify这个网站，貌似不符合cookie某规范，时间总出问题；
+     * 主要是sp这个网站，貌似不符合cookie某规范，时间总出问题；
      * 我暂时先把他干掉，干掉的时间的意思应该是告诉客户端session的过期时间；
      */
     class MyCookieSpec extends DefaultCookieSpec {
@@ -105,6 +118,7 @@ public class HttpUntil {
      */
     public HttpUntil get(String url) {
         try {
+            this.url=url;
             HttpGet httpget = new HttpGet(url);
             httpget.setHeader("User-Agent", USERAGENT);
             this.response = httpclient.execute(httpget, context);
@@ -158,6 +172,7 @@ public class HttpUntil {
     public void printResult(){
         logger.info("==================http-result-start=========================\r\n");
         System.out.println("statusLine:    "+this.statusLine);
+        System.out.println("url:    "+this.url);
         logger.info("------------------http-headers------------------------------\r\n");
         for(Header header:this.headers){
             System.out.println("name:    "+header.getName()+"    "+"value:    "+header.getValue());

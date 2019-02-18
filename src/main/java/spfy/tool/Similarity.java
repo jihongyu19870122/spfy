@@ -1,7 +1,6 @@
 package spfy.tool;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Similarity {
 
@@ -102,9 +101,6 @@ public class Similarity {
 //        test.add("9");
 
         System.out.println(maxSimilarity(test(test),"I"));
-
-
-
 //        System.out.println(Similarity.is(" ScriptSideline﻿Sleeve ", "Sle﻿eve S﻿cr﻿ip﻿t S﻿i﻿d﻿e﻿lin﻿e﻿ ﻿Ja﻿cket"));;
 //        System.out.println(Similarity.is(" ScriptSideline﻿", "Sle﻿eve S﻿cr﻿ip﻿t S﻿i﻿d﻿e﻿lin﻿e﻿ ﻿Ja﻿cket"));;
 //        System.out.println(Similarity.is(" Sleeve\uFEFF \uFEFFScrip\uFEFFt\uFEFF Sideli\uFEFFne\uFEFF Jacke\uFEFFt", "Sideline Jacket"));;
@@ -114,6 +110,15 @@ public class Similarity {
 //        System.out.println(Similarity.is(" Supre\uFEFFm\uFEFFe®/Wilso\uFEFFn® \uFEFFT\uFEFFennis Bal\uFEFFl\uFEFFs ", "Supreme®/Wilson® Tennis Balls"));;
 //        System.out.println(Similarity.is("Supreme®/Hanes® Tagless Tees (3 Pack)", "Sup\uFEFFreme®/Han\uFEFFes®\uFEFF T\uFEFFa\uFEFFgle\uFEFFss\uFEFF Tees (3 Pack\uFEFF)"));;
     }
+
+    /***
+     * 根据名字匹配对应的商品
+     */
+//    private String match(String content,String name,String regex) {
+//        //这个规则是先匹配大块，就是包含了连接&名字
+//        int index=Similarity.index(RegexParse.baseParseList(content,regex,2),name);
+//        return RegexParse.baseParseList(content,regex,1).get(index);
+//    }
 
     public static  String filter(String  in){
         if(in==null)
